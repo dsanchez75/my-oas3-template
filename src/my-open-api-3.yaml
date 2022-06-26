@@ -1,0 +1,73 @@
+openapi: 3.0.1
+info:
+  title: My First Open API 3
+  version: 1.0.0
+servers:
+  - url: https://
+    description: Test server
+  - url: https://
+    description: Live server
+paths:
+  /resources:
+    get:
+      description: Return a resources list
+      responses:
+        200:
+          description: OK
+    post:
+      description: Create a resource
+      responses:
+        201:
+          description: Created
+components:
+  schemas:
+    Resource:
+      type: object
+      properties:
+        name:
+          type: string
+          example: resource name
+        description:
+          type: string
+          example: resource despcription
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  parameters:
+    Authorization:
+      name: Authorization
+      in: header
+      description: Authorization header
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Client-ID
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://
+          scopes:
+            scope.read: read scope
+            scope.write: write scope
+security:
+  - apiKey: []
+    oauth2:
+      - scope.read
+      - scope.write
+tags:
+    - name: Resource
+      description: Resource tag
+    - name: Error
+      description: Error tag
+externalDocs:
+  url: https://swagger.io/specification/
+  description: Open API 3 specification
