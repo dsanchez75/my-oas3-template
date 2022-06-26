@@ -1,1 +1,1 @@
-# my-oas3-template
+My Open API 3 Template
